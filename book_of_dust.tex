@@ -1,4 +1,4 @@
-\documentclass[twocolumn,paper=a4,pagesize=pdftex,12pt,headinclude=on]{scrbook}
+\documentclass[paper=a4,pagesize=pdftex,12pt,headinclude=on]{scrbook}
 \areaset[1in]{5in}{11in}
 
 \usepackage{Rothdn}
@@ -10,6 +10,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{bigfoot}
 \usepackage{ragged2e}
+\usepackage{multicol}
 
 \usepackage{fontspec}
 \usepackage{xunicode}
@@ -38,13 +39,13 @@
 \renewcommand{\chaptername}{Book}
 \renewcommand\LettrineFontHook{\color{Maroon}\Rothdnfamily}
 
-\newcounter{chap}[chapter]
-\newcounter{verse}[chap]
+%\newcounter{chap}[chapter]
+%\newcounter{verse}[chap]
 
-\newcommand{\vv}{${}^{\arabic{verse}\,}$\stepcounter{verse}}
-\newcommand{\vs}{\stepcounter{verse}}
-\newcommand{\chs}{\stepcounter{chap}\vs}
-\newcommand{\ch}[1]{\renewcommand\LettrineFontHook{\color{Black}\fontfamily{EB Garamond Initials}}\lettrine[lines=2,findent=5pt,nindent=0pt,depth=0]{\ \arabic{chap}}{#1}\stepcounter{chap}\vs}
+%\newcommand{\vv}{${}^{\arabic{verse}\,}$\stepcounter{verse}}
+%\newcommand{\vs}{\stepcounter{verse}}
+%\newcommand{\chs}{\stepcounter{chap}\vs}
+%\newcommand{\ch}[1]{\renewcommand\LettrineFontHook{\color{Black}\fontfamily{EB Garamond Initials}}\lettrine[lines=2,findent=5pt,nindent=0pt,depth=0]{\ \arabic{chap}}{#1}\stepcounter{chap}\vs}
 
 \newcommand{\firstletter}[2]{\renewcommand\LettrineFontHook{\color{Maroon}\Rothdnfamily}\lettrine[lines=4,findent=3pt,nindent=0pt,depth=1]{#1}{#2}}
 
@@ -112,15 +113,33 @@
 \pagestyle{scrplain}
 \renewcommand*{\chapterpagestyle}{scrheadings}
 
+% Bible verses
+\newcounter{verse}
+\newcommand{\bverse}{%
+  \addtocounter{verse}{1}
+  \theverse\quad
+}
+
+\newcommand{\bversenopar}[1][\indent]{%
+   \addtocounter{verse}{1}\\#1\theverse~
+}
+
+\newcommand{\bversenonum}{%
+   \addtocounter{verse}{1}
+   \par
+}
+
 
 % Paragraphs
 
-%\setlength{\parindent}{-5pt}
-%\setlength{\parskip}{0pt}  
+\setlength{\parindent}{-5pt}
+\setlength{\parskip}{0pt}  
 
 \linespread{0.9}
 \setlength{\columnsep}{6mm}
 
+% Shortcut, we're using this a lot
+\let\lb\linebreak
 
 
 \begin{document}
@@ -131,5 +150,6 @@
 %\end{titlepage}
 
 \input{books/01_genesis.tex}
+\input{books/whimsy.tex}
 
 \end{document}
