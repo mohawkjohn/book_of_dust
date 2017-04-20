@@ -51,7 +51,16 @@
 
 \newcommand{\gods}[1]{{\swabfamily #1}}
 
+\newcommand{\newpages}[1]{\newpage\null\ifnum#1>0 \newpages{\the\numexpr#1 - 1} \fi}
 
+%\newcommand*{\newpages}[1]{
+ % \newcount\mycount
+ % \mycount=0
+  %\loop\ifnum\mycount<#1
+  %\advance\mycount 1
+  %\ifnum\mycount<#1
+  %\repeat
+ % }
 
 % Environments
 \usepackage{setspace}
@@ -150,6 +159,7 @@
 %\end{titlepage}
 
 \input{books/01_genesis.tex}
+\input{books/02_instructions.tex}
 \input{books/whimsy.tex}
 
 \end{document}
