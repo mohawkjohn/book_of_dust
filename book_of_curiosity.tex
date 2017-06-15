@@ -1,0 +1,176 @@
+\documentclass[paper=letter,pagesize=pdftex,11pt,headinclude=on,twoside,openright]{scrbook}
+\areaset[1in]{5.5in}{9.5in}
+
+\usepackage{Rothdn}
+\usepackage{yfonts}
+%\usepackage[T1]{fontenc}
+%\usepackage{fancyhdr}
+\usepackage{textcomp}
+%\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{bigfoot}
+\usepackage{ragged2e}
+\usepackage{multicol}
+
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{polyglossia}
+
+\setmainlanguage{english}
+%\setotherlanguages{sanskrit}
+
+%\newfontfamily\devanagarifont[Script=Devanagari]{Lohit Devanagari}
+%\defaultfontfeatures{Ligatures=Historic,Numbers=OldStyle,RawFeature={+ss02,+cv01,+dlig}}
+%\defaultfontfeatures{Ligatures=Historic,Contextuals=Alternate,Numbers=OldStyle,RawFeature={+ss02,+cv01,+dlig}}
+%\setmainfont[RawFeature={},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond}
+\defaultfontfeatures{Ligatures=Historic,Contextuals=Alternate,Numbers=OldStyle,RawFeature={+ss02,+cv01,+dlig}}
+\setmainfont[RawFeature={-ss02,-cv01,-ss05,-dlig},ItalicFeatures={RawFeature=+cv04,CharacterVariant=5:2}]{EB Garamond}
+% Do the replacements manually in titles, to not ruin the textsc
+\newfontfamily\booktitlefont[Ligatures=Historic,Contextuals=Alternate,Numbers=OldStyle,RawFeature={+ss02,+cv01,+ss05,+dlig},LetterSpace=40,WordSpace=6]{EB Garamond}
+\newfontfamily\spacedfont[Ligatures=Historic,Contextuals=Alternate,Numbers=OldStyle,RawFeature={-ss02,+ss05,+cv01,+dlig},LetterSpace=20,WordSpace=3]{EB Garamond}
+\newfontfamily\lettrinefont{EB Garamond Initials}
+\newfontfamily\headerfont[Ligatures=Historic,Contextuals=Alternate,Numbers=OldStyle,RawFeature={+ss02,+ss05,+cv01,+dlig},LetterSpace=20,WordSpace=3]{EB Garamond}
+
+
+\usepackage{graphicx}
+\usepackage{lettrine}
+
+% No page should finish with a hyphen
+\brokenpenalty=10000
+
+% Strongly discourage two lines with hyphenated words in a row
+%\doublehyphendemerits=1000000000
+
+
+\renewcommand{\chaptername}{Book}
+\renewcommand\LettrineFontHook{\color{Maroon}\Rothdnfamily}
+
+%\newcounter{chap}[chapter]
+%\newcounter{verse}[chap]
+
+%\newcommand{\vv}{${}^{\arabic{verse}\,}$\stepcounter{verse}}
+%\newcommand{\vs}{\stepcounter{verse}}
+%\newcommand{\chs}{\stepcounter{chap}\vs}
+%\newcommand{\ch}[1]{\renewcommand\LettrineFontHook{\color{Black}\fontfamily{EB Garamond Initials}}\lettrine[lines=2,findent=5pt,nindent=0pt,depth=0]{\ \arabic{chap}}{#1}\stepcounter{chap}\vs}
+
+%\newcommand{\firstletter}[3]{\renewcommand\LettrineFontHook{\color{#1}\Rothdnfamily}\lettrine[lines=4,findent=6pt,nindent=0pt,depth=1]{#2}{#3}}
+\newcommand{\firstletter}[2]{\renewcommand\LettrineFontHook{\Rothdnfamily}\lettrine[lines=4,findent=6pt,nindent=0pt,depth=1]{#1}{#2}}
+
+\newcommand{\gods}[1]{{\swabfamily #1}}
+
+\newcommand{\newpages}[1]{\newpage\null\ifnum#1>0 \newpages{\the\numexpr#1 - 1} \fi}
+
+%\newcommand*{\newpages}[1]{
+ % \newcount\mycount
+ % \mycount=0
+  %\loop\ifnum\mycount<#1
+  %\advance\mycount 1
+  %\ifnum\mycount<#1
+  %\repeat
+ % }
+
+% Environments
+\usepackage{setspace}
+\newenvironment{bookcomment}
+  {\begin{spacing}{0.8}\itshape\hspace{-1em}}
+  {\end{spacing}}
+
+
+\newenvironment{chaptercomment}
+  {%
+    \setlength{\leftskip}{1em}
+    \setlength{\rightskip}{1em}
+    \begin{spacing}{0.8}
+      \itshape\tiny\hspace{-2em}}
+  {%
+    \end{spacing}
+    \setlength{\leftskip}{0pt}
+    \setlength{\rightskip}{0pt}
+  }
+
+% Footnotes
+\usepackage{alphalph}
+\DeclareNewFootnote{main}[alph]
+\renewcommand{\thefootnotemain}{\alphalph{\value{footnotemain}}}
+\DeclareNewFootnote{chapter}[Roman]
+\DeclareNewFootnote{verse}[arabic]
+
+
+\setlength{\marginparwidth}{2.1em}% adjust to your document's needs
+\newcommand{\marginnotes}[2]{%
+  \marginpar{\vspace{#1}\tiny#2}
+}
+\newcommand{\fakenote}[3][\space]{%
+   \par\noindent#1#2~\justifying#3
+}
+
+\usepackage{titlesec}
+% Use fourier ornaments
+\usepackage{fourier-orns}
+
+% Bible books
+\newcommand{\bbook}[3][]{%
+  %\makebox[\textwidth][c]{\includegraphics[width=6in]{#4}}
+  \chapter[#1]{#2,\\\large #3\\\char"2766}
+}
+\titleformat{\chapter}[hang]%
+   {\centering\huge}%
+   {}%
+   {0pt}%
+   {}
+\titlespacing*{\chapter}
+  {0pt}{0pt}{5pt}
+  
+% Headings
+%\usepackage{scrpage2}
+%\pagestyle{scrplain}
+\pagestyle{empty}
+\assignpagestyle{\chapter}{empty}
+%\lohead[]{Hello}
+%\ofoot[]{HELLO}
+%\rofoot[]{\pagemark}
+
+%
+%\renewcommand*{\chapterpagestyle}{scrheadings}
+
+% Bible verses
+\newcounter{verse}
+\newcommand{\bverse}{%
+  \addtocounter{verse}{1}
+  \theverse\quad
+}
+
+\newcommand{\bversenopar}[1][\indent]{%
+   \addtocounter{verse}{1}\\#1\theverse~
+}
+
+\newcommand{\bversenonum}{%
+   \addtocounter{verse}{1}
+   \par
+}
+
+
+% Paragraphs
+
+\setlength{\parindent}{-4pt}
+\setlength{\parskip}{2pt}  
+
+\linespread{0.9}
+\setlength{\columnsep}{0.5in}
+
+% Shortcut, we're using this a lot
+\let\lb\linebreak
+
+
+\begin{document}
+
+%\begin{titlepage}
+\title{The Book of Dust}
+%{\Rothdnfamily\Huge\maketitle}
+%\end{titlepage}
+
+\input{books/01_genesis.tex}
+\input{books/02_instructions.tex}
+\input{books/curiosity.tex}
+
+\end{document}
